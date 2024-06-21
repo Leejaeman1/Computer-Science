@@ -1,7 +1,7 @@
 
 function sendPost() {
             var xhr = new XMLHttpRequest();
-            var url = "http://관리서버주소/endpoint"; // 관리 서버 주소를 여기에 입력하세요
+            var url = "http://25.32.99.72/submission"; // 관리 서버 주소를 여기에 입력하세요
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
@@ -24,7 +24,7 @@ function sendPost() {
 
         function sendGet() {
             var xhr = new XMLHttpRequest();
-            var url = `http://관리서버주소/endpoint?username=${document.getElementById("newUsername").value}&password=${document.getElementById("newPassword").value}&id=${document.getElementById("id").value}`; // 관리 서버 주소를 여기에 입력하세요
+            var url = `http://25.32.99.72/submission?username=${document.getElementById("newUsername").value}&password=${document.getElementById("newPassword").value}&id=${document.getElementById("id").value}`; // 관리 서버 주소를 여기에 입력하세요
             xhr.open("GET", url, true);
 
             xhr.onreadystatechange = function () {
