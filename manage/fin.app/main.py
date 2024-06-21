@@ -12,13 +12,14 @@ app = FastAPI()
 
 # MySQL connection details
 DB_HOST = "25.32.99.72"
-DB_PORT = 2620
+DB_PORT = 80
 DB_USER = "Firefly"
 DB_PASSWORD = "moka&%&1324"
 DB_NAME = "code_management"
 
 # FTP server details
 FTP_HOST = "E_IP_ADDRESS"
+FTP_PORT = 21
 FTP_USER = "yeonjun"
 FTP_PASSWORD = "1234567890"
 
