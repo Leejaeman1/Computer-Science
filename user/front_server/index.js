@@ -1,40 +1,49 @@
-function sendPost() {
+let savedUsername = '';
+let savedPassword = '';
+let savedCode = '';
+let CorrectCode = 'Code';
+
+function SendPost() {
     var xhr = new XMLHttpRequest();
-    var url = "https://jsonplaceholder.typicode.com/posts"; // JSONPlaceholder POST 엔드포인트
+    var url = "https://jsonplaceholder.typicode.com/posts"; 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-    // 입력된 데이터를 JSON 형태로 변환
     var data = JSON.stringify({
         "username": document.getElementById("username").value,
         "password": document.getElementById("password").value,
         "code": document.getElementById("code").value
     });
 
+    savedUsername = document.getElementById("username").value;
+    savedPassword = document.getElementById("password").value;
+    savedCode = document.getElementById("code").value;
+
     xhr.send(data); // 데이터를 서버로 보내기
 
     // 서버에서 응답이 오면 함수 실행
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function () { 
         if (xhr.readyState === 4 && xhr.status === 201) {
             var response = JSON.parse(xhr.responseText);
-            document.getElementById("id").value = response.id;
+            document.getElementById("id").value = response.id; 
             document.getElementById("postForm").style.display = "none"; // POST 폼 숨기기
             document.getElementById("getForm").style.display = "block"; // GET 폼 보이기
         }
     };
 }
 
-function sendGet() {
-    var xhr = new XMLHttpRequest();
-    var url = `https://jsonplaceholder.typicode.com/posts/${document.getElementById("id").value}`; // JSONPlaceholder GET 엔드포인트
-    xhr.open("GET", url, true);
+function SendGet() {
+    var Username = document.getElementById("Username").value;
+    var Password = document.getElementById("Password").value;
 
-    xhr.send();
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            document.getElementById("result").innerText = JSON.stringify(response, null, 2);
+    if (Username === savedUsername && Password === savedPassword) {
+        if (CorrectCode === savedCode) {
+            document.getElementById("result").innerText = "정답";
+        } else {
+            document.getElementById("result").innerText = "오답";
         }
-    };
+    } else {
+        document.getElementById("result").innerText = "username 또는 password가 일치하지 않습니다.";
+    }
+    document.getElementById("result").style.display = "block";
 }
