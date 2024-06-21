@@ -11,10 +11,10 @@ import uvicorn
 app = FastAPI()
 
 # MySQL connection details
-DB_HOST = "localhost"
-DB_PORT = 3306
-DB_USER = "your_mysql_user"
-DB_PASSWORD = "your_mysql_password"
+DB_HOST = "25.32.99.72"
+DB_PORT = 2620
+DB_USER = "Firefly"
+DB_PASSWORD = "moka&%&1324"
 DB_NAME = "code_management"
 
 # FTP server details
@@ -113,9 +113,9 @@ if __name__ == "__main__":
         sys.exit(1)
     
     C_IP_ADDRESS = sys.argv[1]
-    E_IP_ADDRESS = sys.argv[2]
+    E_IP_ADDRESS  = sys.argv[2]
 
     # Adjust FTP_HOST based on the provided E_IP_ADDRESS
     FTP_HOST = E_IP_ADDRESS
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
