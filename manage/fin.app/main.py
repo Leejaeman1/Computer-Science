@@ -12,7 +12,7 @@ app = FastAPI()
 
 # MySQL connection details
 DB_HOST = "25.32.99.72"
-DB_PORT = 80
+DB_PORT = 3306
 DB_USER = "Firefly"
 DB_PASSWORD = "moka&%&1324"
 DB_NAME = "code_management"
