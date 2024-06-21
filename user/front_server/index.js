@@ -1,39 +1,37 @@
-function sendData() {
-    let username = document.getElementById('username').value;
-    let password = document.getElementById('password').value;
-    let code = document.getElementById('code').value;
 
-    let payload = { username, password, code };
+function sendPost() {
+            var xhr = new XMLHttpRequest();
+            var url = "http://관리서버주소/endpoint"; // 관리 서버 주소를 여기에 입력하세요
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log('Response:', this.responseText);
-            document.getElementById('submissionForm').classList.add('hidden');
-            document.getElementById('reservationForm').classList.remove('hidden');
+            var data = JSON.stringify({
+                "username": document.getElementById("username").value,
+                "password": document.getElementById("password").value,
+                "code": document.getElementById("code").value
+            });
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById("id").value = response.id;
+                    document.getElementById("postForm").style.display = "none";
+                    document.getElementById("getForm").style.display = "block";
+                }
+            };
+            xhr.send(data);
         }
-    };
-    xhttp.open('POST', 'http://localhost:3000/submission', true);
-    xhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xhttp.send(JSON.stringify(payload));
-}
 
-function getReservation() {
-    const username = document.getElementById('checkUsername').value;
-    const password = document.getElementById('checkPassword').value;
+        function sendGet() {
+            var xhr = new XMLHttpRequest();
+            var url = `http://관리서버주소/endpoint?username=${document.getElementById("newUsername").value}&password=${document.getElementById("newPassword").value}&id=${document.getElementById("id").value}`; // 관리 서버 주소를 여기에 입력하세요
+            xhr.open("GET", url, true);
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            const response = JSON.parse(this.responseText);
-            document.getElementById('reservationNumber').innerText = `Reservation Number: ${response.reservationNumber}`;
-            document.getElementById('codeResult').innerText = `Code Result: ${response.codeResult}`;
-            document.getElementById('reservationForm').classList.add('hidden');
-            document.getElementById('resultForm').classList.remove('hidden');
-        } else if (this.readyState === 4) {
-            alert('Failed to get reservation. Please check your username and password.');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById("result").innerText = JSON.stringify(response, null, 2);
+                }
+            };
+            xhr.send();
         }
-    };
-    xhttp.open('GET', `http://localhost:3000/submission?username=${username}&password=${password}&id=${id}`, true);
-    xhttp.send();
-}

@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="UTF-8">
     <title>User Data Submission</title>
     <style>
-        .hidden {
-            display: none;
-        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        .form-container {
+        .form {
             width: 300px;
             background-color: #fff;
             padding: 20px;
@@ -24,17 +24,13 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-container h1 {
-            margin-bottom: 20px;
-        }
-
-        .form-container label {
+        .form label {
             display: block;
             margin-bottom: 5px;
         }
 
-        .form-container input,
-        .form-container textarea {
+        .form input,
+        .form textarea {
             width: 92%;
             padding: 10px;
             margin-bottom: 15px;
@@ -42,7 +38,7 @@
             border-radius: 4px;
         }
 
-        .form-container button {
+        .form button {
             width: 100%;
             padding: 10px;
             background-color: #007bff;
@@ -51,43 +47,50 @@
             border-radius: 4px;
         }
 
-        .form-container button:hover {
+        .form button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
+
 <body>
-    <div class="form-container" id="submissionForm">
-        <h1>Submit Code</h1>
-        <form id="dataForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="code">Code:</label>
-            <textarea id="code" name="code" required></textarea>
-
-            <button type="button" onclick="sendData()">Submit</button>
-        </form>
+    <div class="form">
+        <div id="postForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div>
+                <label for="code">Code:</label>
+                <input type="text" id="code" name="code">
+            </div>
+            <button type="button" onclick="sendPost()">Send</button>
+        </div>
+        
+        <div id="getForm" style="display:none;">
+            <div>
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" readonly>
+            </div>
+            <div>
+                <label for="newUsername">New Username:</label>
+                <input type="text" id="newUsername" name="newUsername">
+            </div>
+            <div>
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword">
+            </div>
+            <button type="button" onclick="sendGet()">Send</button>
+        </div>
+        
+        <div id="result"></div>
     </div>
-    <div class="form-container hidden" id="reservationForm">
-        <h1>Get Reservation</h1>
-        <form id="getReservationForm">
-            <label for="checkUsername">Username:</label>
-            <input type="text" id="checkUsername" name="checkUsername" required>
-
-            <label for="checkPassword">Password:</label>
-            <input type="password" id="checkPassword" name="checkPassword" required>
-
-            <button type="button" onclick="getReservation()">Get Reservation</button>
-        </form>
-    </div>
-    <div class="form-container hidden" id="resultForm">
-        <p id="reservationNumber"></p>
-        <p id="codeResult"></p>
-    </div>
+    
     <script src="index.js"></script>
 </body>
+
 </html>
