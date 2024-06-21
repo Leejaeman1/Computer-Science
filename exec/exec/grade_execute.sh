@@ -11,7 +11,7 @@ ANSWER_FILE="/home/yeonjun/execution_server/answer.txt"
 RESULT_FILE="/tmp/result.txt"
 ERROR_LOG="/tmp/error.log"
 #Management Server URL로 수정
-SERVER_URL="http://http://127.0.0.1:8000"
+SERVER_URL="http://127.0.0.1:8000"
 
 # 파이썬 스크립트 실행 함수
 run_python_script() {
