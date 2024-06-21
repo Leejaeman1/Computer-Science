@@ -19,15 +19,14 @@ function SendPost() {
     savedPassword = document.getElementById("password").value;
     savedCode = document.getElementById("code").value;
 
-    xhr.send(data); // 데이터를 서버로 보내기
+    xhr.send(data);
 
-    // 서버에서 응답이 오면 함수 실행
     xhr.onreadystatechange = function () { 
         if (xhr.readyState === 4 && xhr.status === 201) {
             var response = JSON.parse(xhr.responseText);
             document.getElementById("id").value = response.id; 
-            document.getElementById("postForm").style.display = "none"; // POST 폼 숨기기
-            document.getElementById("getForm").style.display = "block"; // GET 폼 보이기
+            document.getElementById("postForm").style.display = "none";
+            document.getElementById("getForm").style.display = "block";
         }
     };
 }
