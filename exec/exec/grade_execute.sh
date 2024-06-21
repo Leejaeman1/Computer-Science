@@ -7,11 +7,11 @@
 SCRIPT_PATH="$1"
 echo $SCRIPT_PATH
 
-ANSWER_FILE="/home/yeonjun/execution_server/answer.txt"
+ANSWER_FILE="/home/yeonjun/exec/answer.txt"
 RESULT_FILE="/tmp/result.txt"
 ERROR_LOG="/tmp/error.log"
 #Management Server URL로 수정
-SERVER_URL="http://127.0.0.1:8000"
+SERVER_URL="http://25.32.99.72"
 
 # 파이썬 스크립트 실행 함수
 run_python_script() {
@@ -21,7 +21,7 @@ run_python_script() {
         echo "Error occurred while running Python script. Exit code: $return_code" >> "$ERROR_LOG"
         # 에러 메시지 관리 서버로 전송 (예시로 curl 사용)
         curl -X PATCH -d "@$ERROR_LOG" "$SERVER_URL/error"
-	echo "ERROR 발생"
+        echo "ERROR 발생"
         exit 1
     fi
     echo "정상 수행"
@@ -43,6 +43,4 @@ fi
 curl -X PATCH -d "{\"result\": \"$RESULT\"}" "$SERVER_URL/score"
 echo "점수를 서버로 전송"
 
-mv $SCRIPT_PATH /home/yeonjun/execution_server/py_file/processed/
-
-
+mv $SCRIPT_PATH /home/yeonjun/exec/py_file/processed/
