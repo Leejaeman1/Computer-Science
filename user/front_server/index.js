@@ -3,6 +3,7 @@ function sendPost() {
     var xhr = new XMLHttpRequest(); // XMLHttpRequest 객체를 생성
             var url = "http://25.32.99.72:3306/submission?"; // 관리 서버 주소를 여기에 입력하세요
     xhr.open("POST", url, true); // post요청 열고, 비동기로 처리(비동기란 작업을 백그라운드에 요청해서 처리되게 해 멀티로 작업을 동시에 처리하는 거, 속도 up)
+            xhr.send(data); // 데이터 서버로 보내기
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8"); // 요청 해더 설정
 
             // 입력된 데이터를 JSON 형태로 변환
@@ -11,8 +12,6 @@ function sendPost() {
                 "password": document.getElementById("password").value,
                 "code": document.getElementById("code").value
             });
-
-            xhr.send(data); // 데이터 서버로 보내기
 
             //서버에서 응답오면 함수 function() 실행
             xhr.onreadystatechange = function () { 
