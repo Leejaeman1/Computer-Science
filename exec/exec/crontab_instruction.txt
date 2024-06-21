@@ -1,0 +1,3 @@
+* * * * * /home/yeonjun/execution/fetch.sh >> /home/yeonjun/execution/fetchlog
+* * * * * /home/yeonjun/execution/grade.sh >> /home/yeonjun/execution/gradelog
+
